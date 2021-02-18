@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CSS Dropdown menu assignment</title>
+        <style>
+            *{
+                margin:0;
+                padding: 0;
+                
+            }
+            body{
+            margin: 0;
+                }
+        
+            ul{
+                
+                padding:0%;
+                background-color:purple;
+		font-family:sans-serif;
+                
+            }
+            ul li{
+                position:relative;
+                text-align: left;
+                display:inline-block;
+            
+            }
+            li{
+                padding:5px 15px;
+                width: 70px;
+                border-right:1px solid;              
+                
+            }
+            ul li a{
+                display: block;
+                color:white;
+                text-decoration:wheat;
+                font-size: 120%;
+                font-style: oblique;    
+                }
+ 
+            ul li ul.dropdown{
+                display:none;
+                position:absolute;
+                left:0;
+                width: 100%;
+            }
+               
+            ul li:hover ul.dropdown{
+                display:block;
+                   
+            }
+            ul li ul.dropdown li{
+                display:block;
+            }
+ 
+        </style>
+    </head>
+    <body>
+        <ul>
+            <div>
+            <li><a hred=''>File</a>
+                <ul class="dropdown">
+                    <li><a href="">Open</a></li>
+                    <li><a href="">Save</a></li>
+                    <li><a href="">Print</a></li>
+                    <li><a href="">Exit</a></li>
+                </ul>
+            </li>
+            
+            <li><a hred=''>Edit</a>
+                <ul class="dropdown">
+                    <li><a href="">Copy</a></li>
+                    <li><a href="">Cut</a></li>
+                    <li><a href="">Paste</a></li>
+                    <li><a href="">Format</a></li>
+                </ul>
+            </li>
+
+            <li><a hred=''>Help</a>
+                <ul class="dropdown">
+                    <li><a href="">About</a></li>
+                </ul>
+            </li> 
+        </div>
+        </ul>
+    </body>
+</html>
