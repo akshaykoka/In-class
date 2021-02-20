@@ -1,88 +1,176 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>CSS Dropdown menu assignment</title>
-        <style>
-            *{
-                margin:0;
-                padding: 0;
-                
-            }
-            body{
-            margin: 0;
-                }
-        
-            ul{
-                
-                padding:0%;
-                background-color:purple;
-		font-family:sans-serif;
-                
-            }
-            ul li{
-                position:relative;
-                text-align: left;
-                display:inline-block;
-            
-            }
-            li{
-                padding:5px 15px;
-                width: 70px;
-                border-right:1px solid;              
-                
-            }
-            ul li a{
-                display: block;
-                color:white;
-                text-decoration:wheat;
-                font-size: 120%;
-                font-style: oblique;    
-                }
- 
-            ul li ul.dropdown{
-                display:none;
-                position:absolute;
-                left:0;
-                width: 100%;
-            }
-               
-            ul li:hover ul.dropdown{
-                display:block;
-                   
-            }
-            ul li ul.dropdown li{
-                display:block;
-            }
- 
-        </style>
-    </head>
-    <body>
-        <ul>
-            <div>
-            <li><a hred=''>File</a>
-                <ul class="dropdown">
-                    <li><a href="">Open</a></li>
-                    <li><a href="">Save</a></li>
-                    <li><a href="">Print</a></li>
-                    <li><a href="">Exit</a></li>
-                </ul>
-            </li>
-            
-            <li><a hred=''>Edit</a>
-                <ul class="dropdown">
-                    <li><a href="">Copy</a></li>
-                    <li><a href="">Cut</a></li>
-                    <li><a href="">Paste</a></li>
-                    <li><a href="">Format</a></li>
-                </ul>
-            </li>
-
-            <li><a hred=''>Help</a>
-                <ul class="dropdown">
-                    <li><a href="">About</a></li>
-                </ul>
-            </li> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulma Example</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+</head>
+<body>
+  <h1>Welcome</h1>
+    <nav class="navbar container" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="https://bulma.io">
+            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+          </a>
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
         </div>
-        </ul>
-    </body>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item">
+              Home
+            </a>
+            <a class="navbar-item">
+              Documentation
+            </a>
+      
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                More
+              </a>
+      
+              <div class="navbar-dropdown">
+                <a class="navbar-item">
+                  About
+                </a>
+                <a class="navbar-item">
+                  Jobs
+                </a>
+                <a class="navbar-item">
+                  Contact
+                </a>
+                <hr class="navbar-divider">
+                <a class="navbar-item">
+                  Report an issue
+                </a>
+              </div>
+            </div>
+          </div>
+      
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-primary">
+                  <strong>Sign up</strong>
+                </a>
+                <a class="button is-light">
+                  Log in
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    
+
+    <div class="container" id="controlThis">
+
+    
+        <div class="columns">
+            
+            <div class="column is-two-thirds">
+                <div class="card">
+                  <header class="card-header">
+                    <p class="card-header-title">
+                      Shop
+                    </p>
+                  </header>
+                
+                  <div class="card-content">
+
+                      <div class="media" v-for="(x, i) in inventory">
+                        <div class="media-left">
+                          <figure class="image is-48x48">
+                            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                          </figure>
+                        </div>
+
+
+                        <div class="media-content">
+                        <button class="button is-small is-primary is-pulled-right" @click.prevent="add(i)">
+                          Add to Cart
+                        </button>
+                          <p class="title is-4">{{x.name}}</p>
+                          <p class="subtitle is-6">${{x.price}}</p>
+                        </div>
+                      </div>
+                  
+                     </div>
+                  </div>
+            </div>
+            <div class="column">
+                <div class="card">
+                  <header class="card-header">
+                    <p class="card-header-title">
+                      Cart
+                    </p>
+                  </header>
+
+                  <table class="table is-striped is-narrow is-hoverable is-fullwidth">
+
+                    <tr><th>Name</th><th>Qty</th><th>Cost</th></tr>
+
+
+                    <tr  v-for="(x, i) in cart">
+                      <td>{{x.name}}</td>
+                      <td>{{x.qty}}</td>
+                      <td>{{x.price * x.qty}}</td>
+                    </tr>
+
+
+                    <tr><th>Total</th><th></th><th> {{ cart.reduce((tot, x) => tot + x.qty * x.price, 0 ) }} </th></tr>
+                  </table>
+                
+                  <div class="card-content">
+                      
+                  
+                     <button class="button is-success">Checkout</button>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script>
+        const person1 = {
+          name: "Akshay koka",
+          age: 25,
+          address: {
+            street: '4126 53rd ave W',
+            city: 'Bradenton',
+            state: 'FL',
+            zip: '34210'
+          }
+        };
+
+        console.log({person1});
+
+        var app = new Vue({
+          el: '#controlThis',
+          data: {
+            inventory: [
+                { name: 'Red bull', price: 4.99 },
+                { name: 'Monster', price: 3.99 },
+                { name: 'Gatorade', price: 3.49 },
+                { name: 'Cali', price: 30.00 },
+                { name: 'HQD', price: 29.99 },
+            ],
+            cart: []
+          },
+          methods: {
+            add(id){
+              this.cart.push({... this.inventory[id], qty: 1  })
+            }
+          }
+        })
+
+    </script>
+</body>
 </html>
