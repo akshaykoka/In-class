@@ -1,5 +1,5 @@
 {
-    "name": "In-class",
+    "name": "inclass",
     "version": "1.0.0",
     "description": "The server package for our application",
     "scripts": {
