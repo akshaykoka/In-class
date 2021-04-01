@@ -1,11 +1,12 @@
 /* B"H
 */
+const bcrypt = require('bcrypt');
 
 const list = [
     { 
-        firstName: 'Moshe',
-        lastName: 'Plotkin',
-        handle: '@JewPaltz',
+        firstName: 'AKshay',
+        lastName: 'koka ',
+        handle: '@akshaykoka',
         pic: 'https://bulma.io/images/placeholders/96x96.png',
         password: 'Me',
     },
@@ -31,10 +32,24 @@ module.exports.Get = (user_id)=> list[user_id];
 module.exports.GetByHandle = (handle)=> ({ ...list.find( (x, i)=> x.handle == handle ), password: undefined }) ;
 module.exports.Add = (user)=> {
     if(!user.firstName){
-        throw { code: 422, msg: "First Name is reqired" }
+        throw { code: 422, msg: "First Name is required" }
     }
      list.push(user);
      return { ...user, password: undefined };
+}
+module.exports.Register = async (user)=> {
+
+    const hash = await bcrypt.hash(user.password, 8);
+
+    user.password = hash;
+
+    if(!user.firstName){
+        throw { code: 422, msg: "First Name is required" }
+    }
+
+    list.push(user);
+    return { ...user, password: undefined };
+
 }
 module.exports.Update = (user_id, user)=> {
     const oldObj = list[user_id];
